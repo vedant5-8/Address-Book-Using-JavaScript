@@ -249,6 +249,46 @@ function countContacts() {
   }
 }
 
+function filterContactsByCityOrState() {
+  console.log('Filter contacts by:');
+  console.log('1. City');
+  console.log('2. State');
+  let choice = readline.questionInt('Enter your choice: ');
+
+  let filteredContacts;
+  switch (choice) {
+    case 1:
+      let city = readline.question('Enter city: ');
+      filteredContacts = contactsArray.filter(contact => contact.city === city);
+      if (filteredContacts.length === 0) {
+        console.log(`No contacts found in ${city}`);
+      } else {
+        console.log(`Contacts in ${city}:`);
+        for (let contact of filteredContacts) {
+          console.log(`First Name: ${contact.firstName}`);
+          console.log(`Last Name: ${contact.lastName}`);
+          console.log();
+        }
+      }
+      break;
+    case 2:
+      let state = readline.question('Enter state: ');
+      filteredContacts = contactsArray.filter(contact => contact.state === state);
+      if (filteredContacts.length === 0) {
+        console.log(`No contacts found in ${state}`);
+      } else {
+        console.log(`Contacts in ${state}:`);
+        for (let contact of filteredContacts) {
+          console.log(`First Name: ${contact.firstName}`);
+          console.log(`Last Name: ${contact.lastName}`);
+          console.log();
+        }
+      }
+      break;
+    default:
+      console.log('Invalid choice');
+  }
+}
 
 while (true) {
     console.log('\nSelect an Option: ');
@@ -257,7 +297,8 @@ while (true) {
     console.log('3. Edit Contact');
     console.log('4. Delete Contact');
     console.log('5. Count Contacts');
-    console.log('6. Exit');
+    console.log('6. Filter contacts by City or State');
+    console.log('7. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -283,6 +324,10 @@ while (true) {
         break;
 
       case 6:
+        filterContactsByCityOrState();
+        break;
+
+      case 7:
         process.exit(0);
         
       default:
