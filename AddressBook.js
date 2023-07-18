@@ -121,31 +121,33 @@ class Contacts {
 let contactsArray = [];
 
 function addContact() {
-let firstName = readline.question('Enter first name: ');
-let lastName = readline.question('Enter last name: ');
-let email = readline.question('Enter email: ');
-let phoneNumber = readline.question('Enter phone number: ');
-let address = readline.question('Enter address: ');
-let city = readline.question('Enter city: ');
-let state = readline.question('Enter state: ');
-let zipCode = readline.question('Enter zip code: ');
+  let firstName = readline.question('Enter first name: ');
+  let lastName = readline.question('Enter last name: ');
+  let email = readline.question('Enter email: ');
+  let phoneNumber = readline.question('Enter phone number: ');
+  let address = readline.question('Enter address: ');
+  let city = readline.question('Enter city: ');
+  let state = readline.question('Enter state: ');
+  let zipCode = readline.question('Enter zip code: ');
 
-let contact = new Contacts(firstName, lastName, email, phoneNumber, address, city, state, zipCode);
-contactsArray.push(contact);
+  let contact = new Contacts(firstName, lastName, email, phoneNumber, address, city, state, zipCode);
+  contactsArray.push(contact);
 }
 
 function displayContacts() {
-for (let contact of contactsArray) {
-console.log(`First Name: ${contact.firstName}`);
-console.log(`Last Name: ${contact.lastName}`);
-console.log(`Email: ${contact.email}`);
-console.log(`Phone Number: ${contact.phoneNumber}`);
-console.log(`Address: ${contact.address}`);
-console.log(`City: ${contact.city}`);
-console.log(`State: ${contact.state}`);
-console.log(`Zip Code: ${contact.zipCode}`);
-console.log();
-}
+  for (let contact of contactsArray) {
+
+    console.log(`First Name: ${contact.firstName}`);
+    console.log(`Last Name: ${contact.lastName}`);
+    console.log(`Email: ${contact.email}`);
+    console.log(`Phone Number: ${contact.phoneNumber}`);
+    console.log(`Address: ${contact.address}`);
+    console.log(`City: ${contact.city}`);
+    console.log(`State: ${contact.state}`);
+    console.log(`Zip Code: ${contact.zipCode}`);
+    console.log();
+    
+  }
 }
 
 while (true) {
