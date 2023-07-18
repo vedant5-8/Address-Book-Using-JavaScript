@@ -132,15 +132,22 @@ contactsArray.push(contact4);
 function addContact() {
   let firstName = readline.question('Enter first name: ');
   let lastName = readline.question('Enter last name: ');
-  let email = readline.question('Enter email: ');
-  let phoneNumber = readline.question('Enter phone number: ');
-  let address = readline.question('Enter address: ');
-  let city = readline.question('Enter city: ');
-  let state = readline.question('Enter state: ');
-  let zipCode = readline.question('Enter zip code: ');
 
-  let contact = new Contacts(firstName, lastName, email, phoneNumber, address, city, state, zipCode);
-  contactsArray.push(contact);
+  let contactExists = contactsArray.some(contact => contact.firstName === firstName && contact.lastName === lastName);
+  if (contactExists) {
+    console.log(`Contact with name ${firstName} ${lastName} already exists`);
+  } 
+  else {
+    let email = readline.question('Enter email: ');
+    let phoneNumber = readline.question('Enter phone number: ');
+    let address = readline.question('Enter address: ');
+    let city = readline.question('Enter city: ');
+    let state = readline.question('Enter state: ');
+    let zipCode = readline.question('Enter zip code: ');
+
+    let contact = new Contacts(firstName, lastName, email, phoneNumber, address, city, state, zipCode);
+    contactsArray.push(contact);
+  }
 }
 
 function displayContacts() {
