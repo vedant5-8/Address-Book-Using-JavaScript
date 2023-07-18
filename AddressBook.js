@@ -337,6 +337,37 @@ function viewContactsByCityOrState() {
   }
 }
 
+function countContactsByCityOrState() {
+  console.log('Count contacts by:');
+  console.log('1. City');
+  console.log('2. State');
+  let choice = readline.questionInt('Enter your choice: ');
+
+  let countContacts;
+  switch (choice) {
+    case 1:
+      let city = readline.question('Enter city: ');
+      countContacts = contactsArray.filter(contact => contact.city === city);
+      if (countContacts.length === 0) {
+        console.log(`No contacts found in ${city}`);
+      } else {
+        console.log(`Number of contacts in ${city}: ${countContacts.length}`);
+      }
+      break;
+    case 2:
+      let state = readline.question('Enter state: ');
+      countContacts = contactsArray.filter(contact => contact.state === state);
+      if (countContacts.length === 0) {
+        console.log(`No contacts found in ${state}`);
+      } else {
+        console.log(`Number of contacts in ${state}: ${countContacts.length}`);
+      }
+      break;
+    default:
+      console.log('Invalid choice');
+  }
+}
+
 while (true) {
     console.log('\nSelect an Option: ');
     console.log('1. Add Contact');
@@ -346,7 +377,8 @@ while (true) {
     console.log('5. Count Contacts');
     console.log('6. Filter contacts by City or State');
     console.log('7. View contacts by City or State');
-    console.log('8. Exit');
+    console.log('8. Count contacts by City or State');
+    console.log('9. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -380,6 +412,10 @@ while (true) {
         break;
 
       case 8:
+        countContactsByCityOrState();
+        break;
+
+      case 9:
         process.exit(0);
         
       default:
