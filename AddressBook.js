@@ -368,6 +368,27 @@ function countContactsByCityOrState() {
   }
 }
 
+function sortContactsAlphabetically() {
+  let sortedContacts = contactsArray.slice().sort((a, b) => a.firstName.localeCompare(b.firstName));
+  if (sortedContacts.length === 0) {
+    console.log('No contacts found');
+  } else {
+    console.log('Contacts in alphabetical order:');
+    for (let contact of sortedContacts) {
+      console.log(`First Name: ${contact.firstName}`);
+      console.log(`Last Name: ${contact.lastName}`);
+      console.log(`Email: ${contact.email}`);
+      console.log(`Phone Number: ${contact.phoneNumber}`);
+      console.log(`Address: ${contact.address}`);
+      console.log(`City: ${contact.city}`);
+      console.log(`State: ${contact.state}`);
+      console.log(`Zip Code: ${contact.zipCode}`);
+      console.log();
+    }
+  }
+}
+
+
 while (true) {
     console.log('\nSelect an Option: ');
     console.log('1. Add Contact');
@@ -378,7 +399,8 @@ while (true) {
     console.log('6. Filter contacts by City or State');
     console.log('7. View contacts by City or State');
     console.log('8. Count contacts by City or State');
-    console.log('9. Exit');
+    console.log('9. Sort contacts by Name');
+    console.log('10. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -416,6 +438,10 @@ while (true) {
         break;
 
       case 9:
+        sortContactsAlphabetically();
+        break;
+
+      case 10:
         process.exit(0);
         
       default:
