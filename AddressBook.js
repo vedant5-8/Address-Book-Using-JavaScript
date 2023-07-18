@@ -265,9 +265,7 @@ function filterContactsByCityOrState() {
       } else {
         console.log(`Contacts in ${city}:`);
         for (let contact of filteredContacts) {
-          console.log(`First Name: ${contact.firstName}`);
-          console.log(`Last Name: ${contact.lastName}`);
-          console.log();
+          console.log(`Name: ${contact.firstName} ${contact.lastName}`);
         }
       }
       break;
@@ -279,9 +277,7 @@ function filterContactsByCityOrState() {
       } else {
         console.log(`Contacts in ${state}:`);
         for (let contact of filteredContacts) {
-          console.log(`First Name: ${contact.firstName}`);
-          console.log(`Last Name: ${contact.lastName}`);
-          console.log();
+          console.log(`Name: ${contact.firstName} ${contact.lastName}`);
         }
       }
       break;
