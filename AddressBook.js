@@ -1,34 +1,140 @@
 const readline = require('readline-sync');
 
-class Contact {
-    constructor(firstName, lastName, address, city, state, zip, phoneNumber, email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+class Contacts {
+  constructor(firstName, lastName, email, phoneNumber, address, city, state, zipCode) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.address = address;
+    this.city = city;
+    this.state = state;
+    this.zipCode = zipCode;
+  }
+
+  get firstName() {
+    return this._firstName;
+  }
+
+  set firstName(value) {
+    if (value.match(/^[A-Z][a-z]{2,}$/)) {
+      this._firstName = value;
+    } else {
+      throw new Error('Invalid first name');
     }
+  }
+
+  get lastName() {
+    return this._lastName;
+  }
+
+  set lastName(value) {
+    if (value.match(/^[A-Z][a-z]{2,}$/)) {
+      this._lastName = value;
+    } else {
+      throw new Error('Invalid last name');
+    }
+  }
+
+  get email() {
+    return this._email;
+  }
+
+  set email(value) {
+    this._email = value;
+  }
+
+  get phoneNumber() {
+    return this._phoneNumber;
+  }
+
+  set phoneNumber(value) {
+    this._phoneNumber = value;
+  }
+
+  get address() {
+    return this._address;
+  }
+
+  set address(value) {
+    this._address = value;
+  }
+
+  get city() {
+    return this._city;
+  }
+
+  set city(value) {
+    this._city = value;
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  set state(value) {
+    this._state = value;
+  }
+
+  get zipCode() {
+    return this._zipCode;
+  }
+
+  set zipCode(value) {
+    this._zipCode = value;
+  }
 }
 
-let contacts = [];
+let contactsArray = [];
+
+function addContact() {
+let firstName = readline.question('Enter first name: ');
+let lastName = readline.question('Enter last name: ');
+let email = readline.question('Enter email: ');
+let phoneNumber = readline.question('Enter phone number: ');
+let address = readline.question('Enter address: ');
+let city = readline.question('Enter city: ');
+let state = readline.question('Enter state: ');
+let zipCode = readline.question('Enter zip code: ');
+
+let contact = new Contacts(firstName, lastName, email, phoneNumber, address, city, state, zipCode);
+contactsArray.push(contact);
+}
+
+function displayContacts() {
+for (let contact of contactsArray) {
+console.log(`First Name: ${contact.firstName}`);
+console.log(`Last Name: ${contact.lastName}`);
+console.log(`Email: ${contact.email}`);
+console.log(`Phone Number: ${contact.phoneNumber}`);
+console.log(`Address: ${contact.address}`);
+console.log(`City: ${contact.city}`);
+console.log(`State: ${contact.state}`);
+console.log(`Zip Code: ${contact.zipCode}`);
+console.log();
+}
+}
 
 while (true) {
-    let firstName = readline.question('Enter first name (or "q" to quit): ');
-    if (firstName === 'q') break;
-
-    let lastName = readline.question('Enter last name: ');
-    let address = readline.question('Enter address: ');
-    let city = readline.question('Enter city: ');
-    let state = readline.question('Enter state: ');
-    let zip = readline.question('Enter zip: ');
-    let phoneNumber = readline.question('Enter phone number: ');
-    let email = readline.question('Enter email: ');
-
-    let contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-    contacts.push(contact);
+    console.log('Select an Option: ');
+    console.log('1. Add Contact');
+    console.log('2. Display Contacts');
+    console.log('0. Exit');
+    let choice = readline.questionInt('\nEnter your choice: ');
+    
+    switch (choice) {
+        case 1:
+            addContact();
+            break;
+        
+        case 2:
+            displayContacts();
+            break;
+        
+        case 3:
+            process.exit(0);
+        
+        default:
+            console.log('Invalid choice');
+    }
 }
-
-console.log(contacts);
