@@ -234,6 +234,14 @@ function deleteContact() {
   }
 }
 
+function countContacts() {
+  if (contactsArray.length === 0) {
+    console.log('No contacts found');
+  } else {
+    console.log(`Number of contacts: ${contactsArray.length}`);
+  }
+}
+
 
 while (true) {
     console.log('\nSelect an Option: ');
@@ -241,31 +249,36 @@ while (true) {
     console.log('2. Display Contacts');
     console.log('3. Edit Contact');
     console.log('4. Delete Contact');
-    console.log('5. Exit');
+    console.log('5. Count Contacts');
+    console.log('6. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
     switch (choice) {
-        case 1:
-          addContact();
-          break;
+      case 1:
+        addContact();
+        break;
         
-        case 2:
-          displayContacts();
-          break;
+      case 2:
+        displayContacts();
+        break;
 
-        case 3:
-          editContact();
-          break;
+      case 3:
+        editContact();
+        break;
 
-        case 4:
-          deleteContact();
-          break;
+      case 4:
+        deleteContact();
+        break;
 
-        case 4:
-          process.exit(0);
+      case 5:
+        countContacts();
+        break;
+
+      case 6:
+        process.exit(0);
         
-        default:
-          console.log('Invalid choice');
+      default:
+        console.log('Invalid choice');
     }
 }
