@@ -388,6 +388,76 @@ function sortContactsAlphabetically() {
   }
 }
 
+function sortContactsAlphabeticallyByCityStateOrZip() {
+  console.log('Sort contacts by:');
+  console.log('1. City');
+  console.log('2. State');
+  console.log('3. Zip Code');
+  let choice = readline.questionInt('Enter your choice: ');
+
+  let sortedContacts;
+  switch (choice) {
+    case 1:
+      sortedContacts = contactsArray.slice().sort((a, b) => a.city.localeCompare(b.city));
+      if (sortedContacts.length === 0) {
+        console.log('No contacts found');
+      } else {
+        console.log('Contacts sorted by city:');
+        for (let contact of sortedContacts) {
+          console.log(`First Name: ${contact.firstName}`);
+          console.log(`Last Name: ${contact.lastName}`);
+          console.log(`Email: ${contact.email}`);
+          console.log(`Phone Number: ${contact.phoneNumber}`);
+          console.log(`Address: ${contact.address}`);
+          console.log(`City: ${contact.city}`);
+          console.log(`State: ${contact.state}`);
+          console.log(`Zip Code: ${contact.zipCode}`);
+          console.log();
+        }
+      }
+      break;
+    case 2:
+      sortedContacts = contactsArray.slice().sort((a, b) => a.state.localeCompare(b.state));
+      if (sortedContacts.length === 0) {
+        console.log('No contacts found');
+      } else {
+        console.log('Contacts sorted by state:');
+        for (let contact of sortedContacts) {
+          console.log(`First Name: ${contact.firstName}`);
+          console.log(`Last Name: ${contact.lastName}`);
+          console.log(`Email: ${contact.email}`);
+          console.log(`Phone Number: ${contact.phoneNumber}`);
+          console.log(`Address: ${contact.address}`);
+          console.log(`City: ${contact.city}`);
+          console.log(`State: ${contact.state}`);
+          console.log(`Zip Code: ${contact.zipCode}`);
+          console.log();
+        }
+      }
+      break;
+    case 3:
+      sortedContacts = contactsArray.slice().sort((a, b) => a.zipCode.localeCompare(b.zipCode));
+      if (sortedContacts.length === 0) {
+        console.log('No contacts found');
+      } else {
+        console.log('Contacts sorted by zip code:');
+        for (let contact of sortedContacts) {
+          console.log(`First Name: ${contact.firstName}`);
+          console.log(`Last Name: ${contact.lastName}`);
+          console.log(`Email: ${contact.email}`);
+          console.log(`Phone Number: ${contact.phoneNumber}`);
+          console.log(`Address: ${contact.address}`);
+          console.log(`City: ${contact.city}`);
+          console.log(`State: ${contact.state}`);
+          console.log(`Zip Code: ${contact.zipCode}`);
+          console.log();
+        }
+      }
+      break;
+    default:
+      console.log('Invalid choice');
+  }
+}
 
 while (true) {
     console.log('\nSelect an Option: ');
@@ -400,7 +470,8 @@ while (true) {
     console.log('7. View contacts by City or State');
     console.log('8. Count contacts by City or State');
     console.log('9. Sort contacts by Name');
-    console.log('10. Exit');
+    console.log('10. Sort contacts by City, State or Zip Code');
+    console.log('11. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -442,6 +513,10 @@ while (true) {
         break;
 
       case 10:
+        sortContactsAlphabeticallyByCityStateOrZip();
+        break;
+
+      case 11:
         process.exit(0);
         
       default:
