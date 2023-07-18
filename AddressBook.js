@@ -16,11 +16,12 @@ class Contacts {
     return this._firstName;
   }
 
-  set firstName(value) {
-    if (value.match(/^[A-Z][a-z]{2,}$/)) {
-      this._firstName = value;
+  set firstName(firstName) {
+    let firstNameRE = RegExp('^[A-Z][a-z]{2,}$');
+    if (firstNameRE.test(firstName)) {
+      this._firstName = firstName;
     } else {
-      throw new Error('Invalid first name');
+      console.log('Invalid first name');
     }
   }
 
@@ -28,11 +29,12 @@ class Contacts {
     return this._lastName;
   }
 
-  set lastName(value) {
-    if (value.match(/^[A-Z][a-z]{2,}$/)) {
-      this._lastName = value;
+  set lastName(lastName) {
+    let lastNameRE = RegExp('^[A-Z][a-z]{2,}$');
+    if (lastNameRE.test(lastName)) {
+      this._lastName = lastName;
     } else {
-      throw new Error('Invalid last name');
+      console.log('Invalid last name');
     }
   }
 
@@ -40,49 +42,80 @@ class Contacts {
     return this._email;
   }
 
-  set email(value) {
-    this._email = value;
+  set email(email) {
+    let emailRE = RegExp('^[A-Z][a-z]{2,}$');
+    if (emailRE.test(email)) {
+      this._email = email;
+    } else {
+      console.log('Invalid email');
+    }
   }
 
   get phoneNumber() {
     return this._phoneNumber;
   }
 
-  set phoneNumber(value) {
-    this._phoneNumber = value;
+  set phoneNumber(phoneNumber) {
+    let phoneNumberRE = RegExp('^((\\+91)|91|0)?[789][0-9]{9}$');
+    if (phoneNumberRE.test(phoneNumber)) {
+      this._phoneNumber = phoneNumber;
+    } else {
+      console.log('Invalid Phone Number');
+    }
   }
 
   get address() {
     return this._address;
   }
 
-  set address(value) {
-    this._address = value;
+  set address(address) {
+    let addressRE = RegExp('^[a-zA-Z1-9]{2,}$');
+    if (addressRE.test(address)) {
+      this._address = address;
+    } else {
+      console.log('Invalid address');
+    }
   }
 
   get city() {
     return this._city;
   }
 
-  set city(value) {
-    this._city = value;
+  set city(city) {
+    let cityRE = RegExp('^[a-zA-Z]{2,}$');
+    if (cityRE.test(city)) {
+      this._city = city;
+    } else {
+      console.log('Invalid city');
+    }
   }
 
   get state() {
     return this._state;
   }
 
-  set state(value) {
-    this._state = value;
+  set state(state) {
+    let stateRE = RegExp('^[a-zA-Z]{2,}$');
+    if (stateRE.test(state)) {
+      this._state = state;
+    } else {
+      console.log('Invalid State');
+    }
   }
 
   get zipCode() {
     return this._zipCode;
   }
 
-  set zipCode(value) {
-    this._zipCode = value;
+  set zipCode(zipCode) {
+    let zipCodeRE = RegExp('^[1-9][0-9]{2}[ ]?[0-9]{3}$');
+    if (zipCodeRE.test(zipCode)) {
+      this._zipCode = zipCode;
+    } else {
+      console.log('Invalid Zip Code');
+    }
   }
+
 }
 
 let contactsArray = [];
