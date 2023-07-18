@@ -43,7 +43,7 @@ class Contacts {
   }
 
   set email(email) {
-    let emailRE = RegExp('^[A-Z][a-z]{2,}$');
+    let emailRE = RegExp('^[0-9a-zA-Z]+[+._-]{0,1}[0-9a-zA-Z]+[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$');
     if (emailRE.test(email)) {
       this._email = email;
     } else {
@@ -115,10 +115,19 @@ class Contacts {
       console.log('Invalid Zip Code');
     }
   }
-
 }
 
 let contactsArray = [];
+
+let contact1 = new Contacts('Omkar', 'Pawar', 'omkarpawar@gmail.com', '+918523579514', 'Karave', 'NaviMumbai', 'Maharashtra', '410207');
+let contact2 = new Contacts('Manish', 'Patil', 'manish25@gmail.com', '09876543214', 'Vashi', 'NaviMumbai', 'Maharashtra', '410206');
+let contact3 = new Contacts('Shubham', 'Patil', 'shubhampatil@gmail.com', '9837563523', 'Bhandup', 'Thane', 'Maharashtra', '400599');
+let contact4 = new Contacts('Sahil', 'Mhatre', 'sahil.mhatre@gmail.com', '919534090923', 'Chinchwali', 'Alibag', 'Maharashtra', '402209');
+
+contactsArray.push(contact1);
+contactsArray.push(contact2);
+contactsArray.push(contact3);
+contactsArray.push(contact4);
 
 function addContact() {
   let firstName = readline.question('Enter first name: ');
@@ -135,41 +144,108 @@ function addContact() {
 }
 
 function displayContacts() {
-  for (let contact of contactsArray) {
+  if (contactsArray.length === 0) {
+    console.log('No records found');
+  } else {
+    for (let contact of contactsArray) {
+      console.log(`First Name: ${contact.firstName}`);
+      console.log(`Last Name: ${contact.lastName}`);
+      console.log(`Email: ${contact.email}`);
+      console.log(`Phone Number: ${contact.phoneNumber}`);
+      console.log(`Address: ${contact.address}`);
+      console.log(`City: ${contact.city}`);
+      console.log(`State: ${contact.state}`);
+      console.log(`Zip Code: ${contact.zipCode}`);
+      console.log();
+    }
+  }
+}
 
-    console.log(`First Name: ${contact.firstName}`);
-    console.log(`Last Name: ${contact.lastName}`);
-    console.log(`Email: ${contact.email}`);
-    console.log(`Phone Number: ${contact.phoneNumber}`);
-    console.log(`Address: ${contact.address}`);
-    console.log(`City: ${contact.city}`);
-    console.log(`State: ${contact.state}`);
-    console.log(`Zip Code: ${contact.zipCode}`);
-    console.log();
-    
+function editContact() {
+
+  let firstName = readline.question('Enter first name: ');
+  let lastName = readline.question('Enter last name: ');
+
+  let contact = contactsArray.find(contact => contact.firstName === firstName && contact.lastName === lastName);
+  if (contact) {
+    console.log('Which detail would you like to update?');
+    console.log('1. First Name');
+    console.log('2. Last Name');
+    console.log('3. Email');
+    console.log('4. Phone Number');
+    console.log('5. Address');
+    console.log('6. City');
+    console.log('7. State');
+    console.log('8. Zip Code');
+    let choice = readline.questionInt('Enter your choice: ');
+
+    switch (choice) {
+      case 1:
+        let newFirstName = readline.question('Enter new first name: ');
+        contact.firstName = newFirstName;
+        break;
+      case 2:
+        let newLastName = readline.question('Enter new last name: ');
+        contact.lastName = newLastName;
+        break;
+      case 3:
+        let newEmail = readline.question('Enter new email: ');
+        contact.email = newEmail;
+        break;
+      case 4:
+        let newPhoneNumber = readline.question('Enter new phone number: ');
+        contact.phoneNumber = newPhoneNumber;
+        break;
+      case 5:
+        let newAddress = readline.question('Enter new address: ');
+        contact.address = newAddress;
+        break;
+      case 6:
+        let newCity = readline.question('Enter new city: ');
+        contact.city = newCity;
+        break;
+      case 7:
+        let newState = readline.question('Enter new state: ');
+        contact.state = newState;
+        break;
+      case 8:
+        let newZipCode = readline.question('Enter new zip code: ');
+        contact.zipCode = newZipCode;
+        break;
+      default:
+        console.log('Invalid choice');
+    }
+  } else {
+    console.log(`Contact with name ${firstName} ${lastName} not found`);
   }
 }
 
 while (true) {
-    console.log('Select an Option: ');
+    console.log('\nSelect an Option: ');
     console.log('1. Add Contact');
     console.log('2. Display Contacts');
-    console.log('0. Exit');
+    console.log('3. Edit Contact');
+    console.log('4. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
+    console.log();
     
     switch (choice) {
         case 1:
-            addContact();
-            break;
+          addContact();
+          break;
         
         case 2:
-            displayContacts();
-            break;
-        
+          displayContacts();
+          break;
+
         case 3:
-            process.exit(0);
+          editContact();
+          break;
+
+        case 4:
+          process.exit(0);
         
         default:
-            console.log('Invalid choice');
+          console.log('Invalid choice');
     }
 }
