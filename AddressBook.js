@@ -220,12 +220,28 @@ function editContact() {
   }
 }
 
+function deleteContact() {
+
+  let firstName = readline.question('Enter first name: ');
+  let lastName = readline.question('Enter last name: ');
+
+  let contactIndex = contactsArray.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
+  if (contactIndex !== -1) {
+    contactsArray.splice(contactIndex, 1);
+    console.log(`Contact with name ${firstName} ${lastName} deleted`);
+  } else {
+    console.log(`Contact with name ${firstName} ${lastName} not found`);
+  }
+}
+
+
 while (true) {
     console.log('\nSelect an Option: ');
     console.log('1. Add Contact');
     console.log('2. Display Contacts');
     console.log('3. Edit Contact');
-    console.log('4. Exit');
+    console.log('4. Delete Contact');
+    console.log('5. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -240,6 +256,10 @@ while (true) {
 
         case 3:
           editContact();
+          break;
+
+        case 4:
+          deleteContact();
           break;
 
         case 4:
