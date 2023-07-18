@@ -286,6 +286,57 @@ function filterContactsByCityOrState() {
   }
 }
 
+function viewContactsByCityOrState() {
+  console.log('Filter contacts by:');
+  console.log('1. City');
+  console.log('2. State');
+  let choice = readline.questionInt('Enter your choice: ');
+
+  let viewContacts;
+  switch (choice) {
+    case 1:
+      let city = readline.question('Enter city: ');
+      viewContacts = contactsArray.filter(contact => contact.city === city);
+      if (viewContacts.length === 0) {
+        console.log(`No contacts found in ${city}`);
+      } else {
+        console.log(`Contacts in ${city}:`);
+        for (let contact of viewContacts) {
+          console.log(`Name: ${contact.firstName} ${contact.lastName}`);
+          console.log(`Email: ${contact.email}`);
+          console.log(`Phone Number: ${contact.phoneNumber}`);
+          console.log(`Address: ${contact.address}`);
+          console.log(`City: ${contact.city}`);
+          console.log(`State: ${contact.state}`);
+          console.log(`Zip Code: ${contact.zipCode}`);
+          console.log();
+        }
+      }
+      break;
+    case 2:
+      let state = readline.question('Enter state: ');
+      viewContacts = contactsArray.filter(contact => contact.state === state);
+      if (viewContacts.length === 0) {
+        console.log(`No contacts found in ${state}`);
+      } else {
+        console.log(`Contacts in ${state}:`);
+        for (let contact of viewContacts) {
+          console.log(`Name: ${contact.firstName} ${contact.lastName}`);
+          console.log(`Email: ${contact.email}`);
+          console.log(`Phone Number: ${contact.phoneNumber}`);
+          console.log(`Address: ${contact.address}`);
+          console.log(`City: ${contact.city}`);
+          console.log(`State: ${contact.state}`);
+          console.log(`Zip Code: ${contact.zipCode}`);
+          console.log();
+        }
+      }
+      break;
+    default:
+      console.log('Invalid choice');
+  }
+}
+
 while (true) {
     console.log('\nSelect an Option: ');
     console.log('1. Add Contact');
@@ -294,7 +345,8 @@ while (true) {
     console.log('4. Delete Contact');
     console.log('5. Count Contacts');
     console.log('6. Filter contacts by City or State');
-    console.log('7. Exit');
+    console.log('7. View contacts by City or State');
+    console.log('8. Exit');
     let choice = readline.questionInt('\nEnter your choice: ');
     console.log();
     
@@ -324,6 +376,10 @@ while (true) {
         break;
 
       case 7:
+        viewContactsByCityOrState();
+        break;
+
+      case 8:
         process.exit(0);
         
       default:
